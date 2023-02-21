@@ -1,2 +1,3 @@
-# 0_ressources
-Ressources et instructions pour le cours
+#Ressources et instructions pour le cours
+
+Tout se trouve dans le WIKI
