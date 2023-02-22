@@ -110,26 +110,3 @@ hydraulic_archi %>%
   scale_color_viridis_c() + 
   coord_fixed()
 ```
-
-or as a density profile. 
-
-```{r plot_profile}
-temp <- hydraulic_archi
-temp$z1 <- round(temp$z1, 0)
-temp$type <- factor(temp$type)
-
-dens <- ddply(temp, .(z1, type), summarise, root = sum(suf))
-yl <- "standart uptake fraction"
-
-dens2 <- ddply(dens, .(z1), summarise, root = sum(root))
-max <- dens2$z1[dens2$root == max(dens2$root)]
-
-ggplot(data = dens, aes(x = z1, y = root, colour=type)) +
-    theme_classic() +
-    geom_line(data = dens, aes(x = z1, y = root, colour=type), alpha=0.5) +
-    geom_vline(xintercept = max, lty=2) +
-    stat_smooth(se=FALSE) +
-    coord_flip() +
-    xlab("depth (cm)") +
-    ylab(yl)
-```
